@@ -1,0 +1,49 @@
+"use client";
+import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
+import { SodaCan } from "./SodaCan";
+import { Environment, Float, View } from "@react-three/drei";
+import FloatingCan from "./FloatingCan.jsx";
+import { Perf } from "r3f-perf";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(
+  () => import("@react-three/drei").then((mod) => mod.Loader),
+  {
+    ssr: false,
+  },
+);
+const ViewCanvas = () => {
+  return (
+    <>
+      <Canvas
+        style={{
+          position: "fixed",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          overflow: "hidden",
+          pointerEvents: "none",
+          zIndex: 30,
+        }}
+        shadows
+        dpr={[1, 1.5]}
+        gl={{ antialias: true }}
+        camera={{
+          fov: 30,
+        }}
+      >
+        <Suspense fallback={null}>
+          <View.Port />
+        </Suspense>
+
+        {/* <Perf /> */}
+        {/* <ambientLight intensity={2} />
+      <spotLight intensity={3} position={[1, 1, 1]} /> */}
+      </Canvas>
+      <Loader />
+    </>
+  );
+};
+
+export default ViewCanvas;
