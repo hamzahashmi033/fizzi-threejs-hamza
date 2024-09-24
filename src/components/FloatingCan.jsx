@@ -26,11 +26,10 @@ const FloatingCan = forwardRef(
         >
           {children}
           <SodaCan flavor={flavor} />
-          
         </Float>
       </group>
     );
   },
 );
-
+FloatingCan.displayName = "FloatingCan";    
 export default FloatingCan;

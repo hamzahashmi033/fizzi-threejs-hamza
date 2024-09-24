@@ -34,7 +34,12 @@ export const SodaCan = forwardRef<THREE.Mesh, SodaCanProps>(
     const label = labels[flavor];
 
     return (
-      <group {...props} dispose={null} scale={scale} rotation={[0, -Math.PI, 0]}>
+      <group
+        {...props}
+        dispose={null}
+        scale={scale}
+        rotation={[0, -Math.PI, 0]}
+      >
         <mesh
           ref={ref} // Applying ref to mesh
           castShadow
@@ -55,8 +60,8 @@ export const SodaCan = forwardRef<THREE.Mesh, SodaCanProps>(
           geometry={(nodes.Tab as THREE.Mesh).geometry}
           material={metalMaterial}
         />
-        
       </group>
     );
-  }
+  },
 );
+SodaCan.displayName = "SodaCan";
